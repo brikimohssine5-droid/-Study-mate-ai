@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="StudyMate — a simple open-source study companion.">
+  <title>StudyMate — Study smarter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="StudyMate home"><span class="brand-mark">S</span> StudyMate</a>
+    <div class="top-actions">
+      <label class="sr-only" for="language">Language</label>
+      <select id="language" aria-label="Choose language">
+        <option value="en">English</option><option value="fr">Français</option><option value="ar">العربية</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow" data-i18n="eyebrow">YOUR PERSONAL STUDY SPACE</p>
+        <h1 data-i18n="headline">Make every study session count.</h1>
+        <p class="hero-copy" data-i18n="subhead">Keep your notes, practice active recall, and stay on top of your revision.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true"><span>✦</span><span>✎</span><span>✓</span></div>
+    </section>
+
+    <section class="stats" aria-label="Study progress">
+      <article class="stat"><span data-i18n="notesLabel">Notes</span><strong id="noteCount">0</strong></article>
+      <article class="stat"><span data-i18n="cardsLabel">Flashcards</span><strong id="cardCount">0</strong></article>
+      <article class="stat"><span data-i18n="tasksLabel">Tasks completed</span><strong id="taskCount">0</strong></article>
+    </section>
+
+    <nav class="tabs" aria-label="Study tools">
+      <button class="tab active" data-tab="notes" data-i18n="tabNotes">My notes</button>
+      <button class="tab" data-tab="cards" data-i18n="tabCards">Flashcards</button>
+      <button class="tab" data-tab="quiz" data-i18n="tabQuiz">Quick quiz</button>
+      <button class="tab" data-tab="plan" data-i18n="tabPlan">Revision plan</button>
+    </nav>
+
+    <section id="notes" class="panel">
+      <div class="section-heading"><div><p class="eyebrow" data-i18n="workspace">WORKSPACE</p><h2 data-i18n="notesTitle">Your study notes</h2></div></div>
+      <form id="noteForm" class="note-form">
+        <label for="noteTitle" data-i18n="noteTitleLabel">Title</label>
+        <input id="noteTitle" maxlength="100" required placeholder="e.g. Biology — Cell structure">
+        <label for="noteBody" data-i18n="lessonLabel">Lesson / notes</label>
+        <textarea id="noteBody" rows="5" required placeholder="Write or paste your lesson here..."></textarea>
+        <button class="primary" type="submit" data-i18n="saveNote">Save note</button>
+      </form>
+      <div id="notesList" class="notes-list" aria-live="polite"></div>
+    </section>
+
+    <section id="cards" class="panel hidden">
+      <div class="section-heading"><div><p class="eyebrow">ACTIVE RECALL</p><h2 data-i18n="cardsTitle">Flashcards</h2></div></div>
+      <p class="muted" data-i18n="cardsHelp">Paste lesson text below. StudyMate will make simple question cards from its sentences.</p>
+      <textarea id="cardSource" rows="5" placeholder="Paste a lesson with several sentences..."></textarea>
+      <button class="primary" id="makeCards" data-i18n="makeCards">Create flashcards</button>
+      <div id="flashcard" class="flashcard hidden" aria-live="polite">
+        <p class="eyebrow" id="cardPosition"></p><h3 id="cardQuestion"></h3><p id="cardAnswer" class="answer hidden"></p>
+        <div class="card-actions"><button class="secondary" id="showAnswer" data-i18n="showAnswer">Show answer</button><button class="secondary" id="nextCard" data-i18n="nextCard">Next card</button></div>
+      </div>
+      <p id="cardMessage" class="muted" role="status"></p>
+    </section>
+
+    <section id="quiz" class="panel hidden">
+      <div class="section-heading"><div><p class="eyebrow">PRACTICE</p><h2 data-i18n="quizTitle">Quick quiz</h2></div></div>
+      <p class="muted" data-i18n="quizHelp">Generate a short practice quiz from the lesson you paste.</p>
+      <textarea id="quizSource" rows="5" placeholder="Paste lesson text here..."></textarea>
+      <button class="primary" id="makeQuiz" data-i18n="makeQuiz">Build my quiz</button>
+      <div id="quizArea" class="quiz-area" aria-live="polite"></div>
+    </section>
+
+    <section id="plan" class="panel hidden">
+      <div class="section-heading"><div><p class="eyebrow">SMALL STEPS</p><h2 data-i18n="planTitle">Revision plan</h2></div></div>
+      <form id="taskForm" class="task-form"><label class="sr-only" for="taskInput">New revision task</label><input id="taskInput" maxlength="120" required placeholder="e.g. Review chapter 2"><button class="primary" type="submit" data-i18n="addTask">Add task</button></form>
+      <ul id="taskList" class="task-list"></ul>
+    </section>
+
+    <footer><span>StudyMate · Open source</span><span data-i18n="footer">Your learning data stays in this browser.</span></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
